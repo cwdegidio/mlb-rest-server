@@ -18,15 +18,15 @@ jobs:
 
       - name: unit and integration tests
         run: mvn -B test --file pom.xml
+        env:
+          MLB_DATA_USER: ${{secrets.MLB_DATA_USER}}
+          MLB_DATA_PW: ${{secrets.MLB_DATA_PW}}
+          MLB_DATA_IP: ${{secrets.MLB_DATA_IP}}
 
       - name: build application
         run: |
           mvn clean
           mvn -B package --file pom.xml
-        env:
-          MLB_DATA_USER: ${{secrets.MLB_DATA_USER}}
-          MLB_DATA_PW: ${{secrets.MLB_DATA_PW}}
-          MLB_DATA_IP: ${{secrets.MLB_DATA_IP}}
 
       - name: login to dockerhub
         uses: docker/login-action@v3
