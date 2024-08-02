@@ -12,8 +12,7 @@ services:
     ports:
       - "8080:8080"
     container_name: mlb-sp-rest-server
-#    image: webguy1979/mlb-rest-server:latest
-    image: mlb-sp-rest-server
+    image: webguy1979/mlb-rest-server:latest
     restart: on-failure
 networks:
   mlb-net:
