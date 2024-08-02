@@ -27,18 +27,9 @@ jobs:
           MLB_DATA_PW: ${{secrets.MLB_DATA_PW}}
           MLB_DATA_IP: ${{secrets.MLB_DATA_IP}}
 
-      - name: Generate Coverage Report
-        if: ${{ always() }}
-        run: coverage report > coverage-report
-
-      - uses: actions/upload-artifact@v4
+      - name: Test Report
+        uses: actions/upload-artifact@v3
+        if: ${{ success() || failure() }}
         with:
-          name: coverage-report
-          path: coverage-report
-
-      - name: Create issue on failure
-        if: ${{ failure() }}
-        run: |
-          gh issue create --title "Failure on workflow: ${{ github.workflow }} - ${{ github.sha }}" --body "Failure on Job: ${{ github.job }}"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          name: SpringBoot Report
+          path: target/site/serenity/
