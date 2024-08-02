@@ -27,6 +27,7 @@ jobs:
         run: |
           mvn clean
           mvn -B package --file pom.xml
+          docker build -t mlb-rest-server .
         env:
           MLB_DATA_USER: ${{secrets.MLB_DATA_USER}}
           MLB_DATA_PW: ${{secrets.MLB_DATA_PW}}
