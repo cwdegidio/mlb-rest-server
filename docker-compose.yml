@@ -1,0 +1,21 @@
+version: "3"
+services:
+  mlb-rest-server:
+    stdin_open: true
+    tty: true
+    environment:
+      - MLB_DATA_USER=$MLB_DATA_USER
+      - MLB_DATA_PW=$MLB_DATA_PW
+      - MLB_DATA_IP=$MLB_DATA_IP
+    networks:
+      - mlb-net
+    ports:
+      - "8080:8080"
+    container_name: mlb-sp-rest-server
+#    image: webguy1979/mlb-rest-server:latest
+    image: mlb-sp-rest-server
+    restart: on-failure
+networks:
+  mlb-net:
+    external: true
+    name: mlb-net
