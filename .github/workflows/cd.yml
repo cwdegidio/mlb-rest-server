@@ -42,6 +42,7 @@ jobs:
       - name: build docker image
         uses: docker/build-push-action@v3
         with:
+          context: .
           push: true
           tags: webguy1979/mlb-rest-server:latest
 
